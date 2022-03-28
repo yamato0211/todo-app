@@ -1,26 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Btn from './compornent/Btn'
+import Todo from "./compornent/Todo"
+import './App.css'
 
-function App() {
+const App: React.FC = () => {
+  const array = ["宿題をする", "ご飯を作る", "洗濯をする"]
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="todo-wrapper">
+      <h1>ToDo App</h1>
+      <div className="addTodos">
+        <input type="text" placeholder="タスクを入力してください" id="setTodoValue" />
+        <Btn btnValue="add" id="Btn" />
+      </div>
+      <div className="todos-group">
+        <ul className="todos">
+          {array.map((index) => {
+            return (
+              <li className="todos-item" key={index}>
+                <Todo todoValue={index} />
+                <Btn id="edit" btnValue="編集" />
+                <Btn id="destroy" btnValue="完了" />
+              </li>
+            )
+          })}
+        </ul>
+      </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
